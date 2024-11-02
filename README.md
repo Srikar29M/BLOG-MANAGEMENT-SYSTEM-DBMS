@@ -40,6 +40,50 @@ The relationships among these tables are crucial for maintaining data integrity 
 - The **Blog_Post** table links to the **Comment** table, allowing retrieval of comments associated with each post, and to the **Topic** table to classify the content.
 - The **Polls** and **Poll_Options** tables work together, where each poll can have multiple options, allowing for diverse feedback mechanisms.
 
+- # Blog Management System
+
+## Table Relationships
+
+### User Table Relationships
+
+- **Follower**: 
+  The User table is linked to the Follower table through a foreign key relationship. Each record in the Follower table references the User ID of the user who is following another user, establishing a many-to-many relationship. This means that a user can follow multiple users, and each user can have multiple followers.
+
+- **Comment**: 
+  The User table is also related to the Comment table through a foreign key relationship. Each comment made by a user will reference the User ID, allowing the system to identify which user made the comment. This creates a one-to-many relationship, where one user can have many comments.
+
+### Blog_Post Table Relationships
+
+- **Comment**: 
+  The Blog_Post table is linked to the Comment table through a foreign key relationship, where each comment is associated with a specific blog post. This relationship is one-to-many, indicating that a single blog post can receive multiple comments.
+
+- **Topic**: 
+  The Blog_Post table relates to the Topic table through a foreign key relationship, allowing each blog post to be categorized under one or more topics. This relationship can be modeled as a many-to-many relationship, where multiple posts can belong to the same topic, and each topic can include multiple posts.
+
+### Comment Table Relationships
+
+- **Blog_Post**: 
+  Each comment includes a reference to the Blog_Post ID, allowing the system to link the comment to the corresponding blog post. This establishes a one-to-many relationship, as one blog post can have many comments.
+
+### Follower Table Relationships
+
+- **User**: 
+  The Follower table links back to the User table with two foreign keys—one for the follower and one for the followed user. This creates a self-referential many-to-many relationship, where each user can follow multiple other users, and each user can have multiple followers.
+
+### Polls and Poll_Options Table Relationships
+
+- **Polls**: 
+  Each poll can have multiple options, with the Polls table linked to the Poll_Options table through a foreign key relationship. This is a one-to-many relationship, where each poll can include several response options.
+
+## Summary of Relationships
+
+- **User ↔ Follower**: One-to-Many (User can have many followers)
+- **User ↔ Comment**: One-to-Many (User can make many comments)
+- **Blog_Post ↔ Comment**: One-to-Many (Blog Post can have many comments)
+- **Blog_Post ↔ Topic**: Many-to-Many (Blog Post can belong to multiple topics and vice versa)
+- **Polls ↔ Poll_Options**: One-to-Many (Poll can have multiple options)
+
+
 ## Queries and Analytics
 
 The project encompasses a series of SQL queries designed to derive insights from the database. Some of these queries include:
